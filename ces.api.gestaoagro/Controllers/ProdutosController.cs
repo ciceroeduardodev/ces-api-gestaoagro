@@ -11,23 +11,23 @@ namespace ces.api.gestaoagro.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProdutoesController : ControllerBase
+    public class ProdutosController : ControllerBase
     {
-        private readonly cessoftwareContext _context;
+        private readonly gestaoagroContext _context;
 
-        public ProdutoesController(cessoftwareContext context)
+        public ProdutosController(gestaoagroContext context)
         {
             _context = context;
         }
 
-        // GET: api/Produtoes
+        // GET: api/Produtos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Produto>>> GetProdutos()
         {
             return await _context.Produtos.ToListAsync();
         }
 
-        // GET: api/Produtoes/5
+        // GET: api/Produtos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Produto>> GetProduto(int id)
         {
@@ -41,7 +41,7 @@ namespace ces.api.gestaoagro.Controllers
             return produto;
         }
 
-        // PUT: api/Produtoes/5
+        // PUT: api/Produtos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutProduto(int id, Produto produto)
@@ -72,7 +72,7 @@ namespace ces.api.gestaoagro.Controllers
             return NoContent();
         }
 
-        // POST: api/Produtoes
+        // POST: api/Produtos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Produto>> PostProduto(Produto produto)
@@ -97,7 +97,7 @@ namespace ces.api.gestaoagro.Controllers
             return CreatedAtAction("GetProduto", new { id = produto.CliId }, produto);
         }
 
-        // DELETE: api/Produtoes/5
+        // DELETE: api/Produtos/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteProduto(int id)
         {

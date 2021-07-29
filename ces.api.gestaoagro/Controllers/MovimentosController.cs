@@ -11,23 +11,23 @@ namespace ces.api.gestaoagro.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class MovimentoesController : ControllerBase
+    public class MovimentosController : ControllerBase
     {
-        private readonly cessoftwareContext _context;
+        private readonly gestaoagroContext _context;
 
-        public MovimentoesController(cessoftwareContext context)
+        public MovimentosController(gestaoagroContext context)
         {
             _context = context;
         }
 
-        // GET: api/Movimentoes
+        // GET: api/Movimentos
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Movimento>>> GetMovimentos()
         {
             return await _context.Movimentos.ToListAsync();
         }
 
-        // GET: api/Movimentoes/5
+        // GET: api/Movimentos/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Movimento>> GetMovimento(int id)
         {
@@ -41,7 +41,7 @@ namespace ces.api.gestaoagro.Controllers
             return movimento;
         }
 
-        // PUT: api/Movimentoes/5
+        // PUT: api/Movimentos/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutMovimento(int id, Movimento movimento)
@@ -72,7 +72,7 @@ namespace ces.api.gestaoagro.Controllers
             return NoContent();
         }
 
-        // POST: api/Movimentoes
+        // POST: api/Movimentos
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Movimento>> PostMovimento(Movimento movimento)
@@ -97,7 +97,7 @@ namespace ces.api.gestaoagro.Controllers
             return CreatedAtAction("GetMovimento", new { id = movimento.CliId }, movimento);
         }
 
-        // DELETE: api/Movimentoes/5
+        // DELETE: api/Movimentos/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteMovimento(int id)
         {

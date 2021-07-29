@@ -8,8 +8,8 @@ namespace ces.api.gestaoagro.Models
     public partial class Movimento
     {
         public int CliId { get; set; }
+        public int BalId { get; set; }
         public int MovId { get; set; }
-        public int? BalId { get; set; }
         public string MovTicket { get; set; }
         public string MovTipo { get; set; }
         public string MovPlaca { get; set; }

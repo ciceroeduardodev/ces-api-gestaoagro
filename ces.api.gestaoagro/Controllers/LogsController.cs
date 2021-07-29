@@ -13,9 +13,9 @@ namespace ces.api.gestaoagro.Controllers
     [ApiController]
     public class LogsController : ControllerBase
     {
-        private readonly cessoftwareContext _context;
+        private readonly gestaoagroContext _context;
 
-        public LogsController(cessoftwareContext context)
+        public LogsController(gestaoagroContext context)
         {
             _context = context;
         }

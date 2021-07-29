@@ -1,11 +1,9 @@
-﻿using System;
+﻿using ces.api.gestaoagro.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using ces.api.gestaoagro.Models;
 
 namespace ces.api.gestaoagro.Controllers
 {
@@ -13,9 +11,9 @@ namespace ces.api.gestaoagro.Controllers
     [ApiController]
     public class BalancasController : ControllerBase
     {
-        private readonly cessoftwareContext _context;
+        private readonly gestaoagroContext _context;
 
-        public BalancasController(cessoftwareContext context)
+        public BalancasController(gestaoagroContext context)
         {
             _context = context;
         }

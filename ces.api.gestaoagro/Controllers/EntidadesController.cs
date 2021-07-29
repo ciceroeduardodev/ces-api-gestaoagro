@@ -13,9 +13,9 @@ namespace ces.api.gestaoagro.Controllers
     [ApiController]
     public class EntidadesController : ControllerBase
     {
-        private readonly cessoftwareContext _context;
+        private readonly gestaoagroContext _context;
 
-        public EntidadesController(cessoftwareContext context)
+        public EntidadesController(gestaoagroContext context)
         {
             _context = context;
         }

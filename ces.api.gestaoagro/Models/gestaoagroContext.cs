@@ -1,19 +1,18 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.Extensions.Configuration;
 
 #nullable disable
 
 namespace ces.api.gestaoagro.Models
 {
-    public partial class cessoftwareContext : DbContext
+    public partial class gestaoagroContext : DbContext
     {
-        public cessoftwareContext()
+        public gestaoagroContext()
         {
         }
 
-        public cessoftwareContext(DbContextOptions<cessoftwareContext> options)
+        public gestaoagroContext(DbContextOptions<gestaoagroContext> options)
             : base(options)
         {
         }
@@ -30,7 +29,8 @@ namespace ces.api.gestaoagro.Models
         {
             if (!optionsBuilder.IsConfigured)
             {
-                optionsBuilder.UseSqlServer(Program.connectionString);
+#warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
+                optionsBuilder.UseSqlServer("Server=tcp:cessoftware.database.windows.net,1433;Initial Catalog=gestaoagro;Persist Security Info=False;User ID=cicero.axa;Password=slY5lPTBA9iZ886PM55r;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
             }
         }
 
@@ -41,9 +41,9 @@ namespace ces.api.gestaoagro.Models
             modelBuilder.Entity<Balanca>(entity =>
             {
                 entity.HasKey(e => new { e.CliId, e.BalId })
-                    .HasName("PK__BALANCA__B057A394B8E86C42");
+                    .HasName("PK__BALANCA__B057A39462C565D2");
 
-                entity.ToTable("BALANCA", "gestaoAgro");
+                entity.ToTable("BALANCA");
 
                 entity.Property(e => e.CliId).HasColumnName("CLI_Id");
 
@@ -80,9 +80,9 @@ namespace ces.api.gestaoagro.Models
             modelBuilder.Entity<Cliente>(entity =>
             {
                 entity.HasKey(e => e.CliId)
-                    .HasName("PK__CLIENTE__D0BA12208E986AE7");
+                    .HasName("PK__CLIENTE__D0BA12200B8CAA9D");
 
-                entity.ToTable("CLIENTE", "gestaoAgro");
+                entity.ToTable("CLIENTE");
 
                 entity.Property(e => e.CliId)
                     .ValueGeneratedNever()
@@ -107,12 +107,14 @@ namespace ces.api.gestaoagro.Models
 
             modelBuilder.Entity<Entidade>(entity =>
             {
-                entity.HasKey(e => new { e.CliId, e.EntId })
-                    .HasName("PK__ENTIDADE__530CBDA050A2403A");
+                entity.HasKey(e => new { e.CliId, e.BalId, e.EntId })
+                    .HasName("PK__ENTIDADE__B86CC96C82DA8C45");
 
-                entity.ToTable("ENTIDADE", "gestaoAgro");
+                entity.ToTable("ENTIDADE");
 
                 entity.Property(e => e.CliId).HasColumnName("CLI_Id");
+
+                entity.Property(e => e.BalId).HasColumnName("BAL_Id");
 
                 entity.Property(e => e.EntId).HasColumnName("ENT_Id");
 
@@ -142,12 +144,14 @@ namespace ces.api.gestaoagro.Models
 
             modelBuilder.Entity<Log>(entity =>
             {
-                entity.HasKey(e => new { e.CliId, e.LogId })
-                    .HasName("PK__LOG__E48C5EAEC44B5ACA");
+                entity.HasKey(e => new { e.CliId, e.BalId, e.LogId })
+                    .HasName("PK__LOG__5314C75C0F1E3CD6");
 
-                entity.ToTable("LOG", "gestaoAgro");
+                entity.ToTable("LOG");
 
                 entity.Property(e => e.CliId).HasColumnName("CLI_Id");
+
+                entity.Property(e => e.BalId).HasColumnName("BAL_Id");
 
                 entity.Property(e => e.LogId).HasColumnName("LOG_Id");
 
@@ -173,16 +177,16 @@ namespace ces.api.gestaoagro.Models
 
             modelBuilder.Entity<Movimento>(entity =>
             {
-                entity.HasKey(e => new { e.CliId, e.MovId })
-                    .HasName("PK__MOVIMENT__77FA6CFA9E0D30EA");
+                entity.HasKey(e => new { e.CliId, e.BalId, e.MovId })
+                    .HasName("PK__MOVIMENT__1A23A479EA9DB810");
 
-                entity.ToTable("MOVIMENTO", "gestaoAgro");
+                entity.ToTable("MOVIMENTO");
 
                 entity.Property(e => e.CliId).HasColumnName("CLI_Id");
 
-                entity.Property(e => e.MovId).HasColumnName("MOV_Id");
-
                 entity.Property(e => e.BalId).HasColumnName("BAL_Id");
+
+                entity.Property(e => e.MovId).HasColumnName("MOV_Id");
 
                 entity.Property(e => e.MovAtivo).HasColumnName("MOV_Ativo");
 
@@ -268,12 +272,14 @@ namespace ces.api.gestaoagro.Models
 
             modelBuilder.Entity<Produto>(entity =>
             {
-                entity.HasKey(e => new { e.CliId, e.PrdId })
-                    .HasName("PK__PRODUTO__50F1CA8C2884D393");
+                entity.HasKey(e => new { e.CliId, e.BalId, e.PrdId })
+                    .HasName("PK__PRODUTO__78531E1E79ED15DE");
 
-                entity.ToTable("PRODUTO", "gestaoAgro");
+                entity.ToTable("PRODUTO");
 
                 entity.Property(e => e.CliId).HasColumnName("CLI_Id");
+
+                entity.Property(e => e.BalId).HasColumnName("BAL_Id");
 
                 entity.Property(e => e.PrdId).HasColumnName("PRD_Id");
 
@@ -288,9 +294,9 @@ namespace ces.api.gestaoagro.Models
             modelBuilder.Entity<Usuario>(entity =>
             {
                 entity.HasKey(e => new { e.CliId, e.UsrId })
-                    .HasName("PK__USUARIO__A9A7F001055E79D9");
+                    .HasName("PK__USUARIO__A9A7F00148BA4894");
 
-                entity.ToTable("USUARIO", "gestaoAgro");
+                entity.ToTable("USUARIO");
 
                 entity.Property(e => e.CliId).HasColumnName("CLI_Id");
 

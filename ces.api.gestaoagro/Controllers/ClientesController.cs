@@ -6,8 +6,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using ces.api.gestaoagro.Models;
-using System.Runtime.InteropServices;
-using System.Reflection;
 
 namespace ces.api.gestaoagro.Controllers
 {
@@ -15,9 +13,9 @@ namespace ces.api.gestaoagro.Controllers
     [ApiController]
     public class ClientesController : ControllerBase
     {
-        private readonly cessoftwareContext _context;
+        private readonly gestaoagroContext _context;
 
-        public ClientesController(cessoftwareContext context)
+        public ClientesController(gestaoagroContext context)
         {
             _context = context;
         }
@@ -79,7 +77,6 @@ namespace ces.api.gestaoagro.Controllers
         [HttpPost]
         public async Task<ActionResult<Cliente>> PostCliente(Cliente cliente)
         {
-            cliente.CliToken = Assembly.GetExecutingAssembly().GetCustomAttribute<GuidAttribute>().Value.ToUpper();
             _context.Clientes.Add(cliente);
             try
             {
